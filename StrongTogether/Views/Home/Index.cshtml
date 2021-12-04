@@ -1,8 +1,77 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        height: 100%;
+    }
+    body {
+        /* The image used */
+        background-image: url(gymbanner.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .center {
+      padding: 250px 0;
+      margin-left: -170px;
+    }
+    .button {
+      border-radius: 4px;
+      background-color: white;
+      border: none;
+      color: black;
+      text-align: center;
+      font-size: 16px;
+      padding: 15px 32px;
+      display: inline-block;
+      width: 170px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Leelawadee UI';
+      color: white;
+    }
+
+    h1 {
+      font-weight: bold;
+    }
+</style>
+
+<body>
+  <div class="center">
+    <h1>Welcome to Strong Together</h1>
+    <h5>Sign up for free today</h5>
+    <a class="button" asp-area="Identity" asp-page="/Account/Register"><span>Get started</span></a>
+  </div>  
+</body>
