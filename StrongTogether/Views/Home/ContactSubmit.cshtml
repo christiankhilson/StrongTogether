@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Contact Submit";
+}
+
+<style>
+    div.container4 {
+        height: 10em;
+        position: relative 
+    }
+    div.container4 h4 {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) 
+    }
+    .submit {
+      background-color: #FFB694;
+      color: white;
+      padding: 12px 20px;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      margin-top: 50px;
+      transform: translate(-50%, -50%);
+      border: none;
+      cursor: pointer;
+    }
+
+    .submit:hover {
+      background-color: #f59b71;
+    }
+</style>
+<div class="container4">
+     <h4>Thank you for your feedback!</h4>
+     <a class="submit" asp-area="" asp-controller="Home" asp-action="Index">Back to home</a>
+</div>

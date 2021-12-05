@@ -18,7 +18,11 @@ namespace StrongTogether.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult ContactSubmit()
         {
             return View();
         }
