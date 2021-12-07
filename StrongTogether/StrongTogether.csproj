@@ -9,15 +9,10 @@
 
   <ItemGroup>
     <None Remove="Views\Home\Index.cshtml.css" />
-    <None Remove="Views\Home\Index.cshtml.js" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml.css">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Views\Home\Index.cshtml.js">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

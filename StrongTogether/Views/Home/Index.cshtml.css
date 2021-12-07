@@ -4,9 +4,9 @@
         margin-left: -3500px; /* 50% */
     }
 
-    .center {
+    .pos {
         left: 50%;
-        margin-left: -85px; /* 50% */
+        margin-left: -85px;
     }
 }
 
