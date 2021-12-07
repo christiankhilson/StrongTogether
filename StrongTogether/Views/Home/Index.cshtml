@@ -10,15 +10,14 @@
     <style>
   
         body {
-            background-image: url(gymbanner.png);
-            background-size: contain;
-            background-repeat: no-repeat;
+            background: url(gymbanner.png) no-repeat, url(bg.png) repeat;
+            background-size: contain, auto;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .center {
+        .pos {
             padding: 250px 0;
             margin-left: -170px;
         }
@@ -70,28 +69,59 @@
         h1 {
           font-weight: bold;
         }
+
+        .pic {
+          display: block;
+          padding-top: 100px;
+          position: relative;
+        }
+
+        .pic2 {
+          float: right;
+          display: block;
+          padding-top: 100px;
+          position: relative;
+        }
+
+        .p2 {
+          clear: right;
+          text-align: right;
+        }
+
+        a {
+            color: black;
+        }
     </style>
 
 </header>
 @if (!SignInManager.IsSignedIn(User))
 {
     <body>
-      <div class="center">
+      <div class="pos">
         <h1>Welcome to Strong Together</h1>
         <h5>Sign up for free today</h5>
-        <a class="button" asp-area="Identity" asp-page="/Account/Register"><span>Get started</span></a>
+        <a class="button" asp-area="Identity" asp-page="/Account/Register"><span>Get started</span></a> <br />
+        &nbsp<a asp-area="Identity" asp-page="/Account/Login">Or if you have an account, click here to login</a>
       </div>  
     </body>
-
+    <img class="pic" src="panda.jpg" alt="panda" width="500" height="366">
+    <p>This is a panda to inspire you. :)</p>
+    <img class="pic2" src="panda2.jpg" alt="panda2" width="500" height="366">
+    <p class="p2">Remember to eat your greens :)</p>
 }
 else
 {
     <body>
-      <div class="center">
+      <div class="pos">
         <h1>Welcome back @User.Identity?.Name!</h1>
         <h5>Check out your profile:</h5>
         <a class="button" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span>Profile</span></a>
       </div>  
     </body>
+
+    <img class="pic" src="panda.jpg" alt="panda" width="500" height="366">
+    <p>This is a panda to inspire you. :)</p>
+    <img class="pic2" src="panda2.jpg" alt="panda2" width="500" height="366">
+    <p class="p2">Remember to eat your greens :)</p>
 }
 

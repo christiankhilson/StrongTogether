@@ -9,3 +9,10 @@
         margin-left: -85px; /* 50% */
     }
 }
+
+@media screen and (min-width: 500px) {
+    .pic {
+        background-size: auto;
+        
+    }
+}
