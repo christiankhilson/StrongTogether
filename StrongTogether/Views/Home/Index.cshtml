@@ -1,80 +1,97 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+<header>
+    <style>
   
-    body {
-        /* The image used */       
-        display: block;
-        margin-left: auto;
-        margin-right: auto; 
-        width:100%;
-    }
-    #blockquote{
-        background-image: url(gymbanner.png);
-        width:100%;
-	    height:1000px;
-	    background-size:cover;
-	    text-align:center;
-        display: flex;
-	    justify-content: center;
-	    align-items: center;	
-    }
+        body {
+            background-image: url(gymbanner.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .button {
-      border-radius: 4px;
-      background-color: white;
-      border: none;
-      color: black;
-      text-align: center;
-      font-size: 16px;
-      padding: 15px 32px;
-      display: inline-block;
-      width: 170px;
-      transition: all 0.5s;
-      cursor: pointer;
-      margin: 5px;
-    }
-    .button span {
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      transition: 0.5s;
-    }
+        .center {
+            padding: 250px 0;
+            margin-left: -170px;
+        }
 
-    .button span:after {
-      content: '\00bb';
-      position: absolute;
-      opacity: 0;
-      top: 0;
-      right: -20px;
-      transition: 0.5s;
-    }
+        .button {
+          border-radius: 4px;
+          background-color: white;
+          border: none;
+          color: black;
+          text-align: center;
+          font-size: 16px;
+          padding: 15px 32px;
+          display: inline-block;
+          width: 170px;
+          transition: all 0.5s;
+          cursor: pointer;
+          margin: 5px;
+        }
+        .button span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+        }
 
-    .button:hover span {
-      padding-right: 25px;
-    }
+        .button span:after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+        }
 
-    .button:hover span:after {
-      opacity: 1;
-      right: 0;
-    }
+        .button:hover span {
+          padding-right: 25px;
+        }
 
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Leelawadee UI';
-      color: white;
-    }
+        .button:hover span:after {
+          opacity: 1;
+          right: 0;
+        }
 
-    h1 {
-      font-weight: bold;
-    }
-</style>
+        h1, h2, h3, h4, h5, h6 {
+          font-family: 'Leelawadee UI';
+          color: white;
+        }
 
-<body>
-  <div class="center">
-    <h1>Welcome to Strong Together</h1>
-    <h5>Sign up for free today</h5>
-    <a class="button" asp-area="Identity" asp-page="/Account/Register"><span>Get started</span></a>
-  </div>  
-</body>
+        h1 {
+          font-weight: bold;
+        }
+    </style>
+
+</header>
+@if (!SignInManager.IsSignedIn(User))
+{
+    <body>
+      <div class="center">
+        <h1>Welcome to Strong Together</h1>
+        <h5>Sign up for free today</h5>
+        <a class="button" asp-area="Identity" asp-page="/Account/Register"><span>Get started</span></a>
+      </div>  
+    </body>
+
+}
+else
+{
+    <body>
+      <div class="center">
+        <h1>Welcome back @User.Identity?.Name!</h1>
+        <h5>Check out your profile:</h5>
+        <a class="button" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span>Profile</span></a>
+      </div>  
+    </body>
+}
+
