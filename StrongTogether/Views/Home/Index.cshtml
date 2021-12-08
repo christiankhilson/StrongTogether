@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using StrongTogether.Areas.Identity.Data
+@inject SignInManager<StrongTogetherUser> SignInManager
+@inject UserManager<StrongTogetherUser> UserManager
 
 @{
     ViewData["Title"] = "Home Page";

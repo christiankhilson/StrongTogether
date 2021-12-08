@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StrongTogether.Areas.Identity.Data;
 
 namespace StrongTogether.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<Data.StrongTogetherUser> _userManager;
-        private readonly SignInManager<Data.StrongTogetherUser> _signInManager;
+        private readonly UserManager<StrongTogetherUser> _userManager;
+        private readonly SignInManager<StrongTogetherUser> _signInManager;
 
         public IndexModel(
-            UserManager<Data.StrongTogetherUser> userManager,
-            SignInManager<Data.StrongTogetherUser> signInManager)
+            UserManager<StrongTogetherUser> userManager,
+            SignInManager<StrongTogetherUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -100,7 +101,7 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
             public int? FitnessId { get; set; }
         }
 
-        private async Task LoadAsync(Data.StrongTogetherUser user)
+        private async Task LoadAsync(StrongTogetherUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -114,6 +115,7 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
                 Gender = user.Gender,
                 FootHeight = user.FootHeight,
                 InchHeight = user.InchHeight,
+                Weight = user.Weight,
                 FitnessId = user.FitnessId,
                 PhoneNumber = phoneNumber
             };
@@ -179,6 +181,11 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
             if (Input.InchHeight != user.InchHeight)
             {
                 user.InchHeight = Input.InchHeight;
+            }
+
+            if (Input.Weight != user.Weight)
+            {
+                user.Weight = Input.Weight;
             }
 
             if (Input.FitnessId != user.FitnessId)
