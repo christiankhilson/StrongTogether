@@ -15,13 +15,10 @@ public class StrongTogetherUser : IdentityUser
     public int StrongTogetherUserId { get;set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public bool Gender { get; set; }
+    public int Gender { get; set; }
     public int FootHeight { get; set; }
     public int InchHeight { get; set; }
     public int Weight { get; set; }
-    public int? FitnessId { get; set; }
-
-    [Key]
-    public FitnessGoal FitnessGoal { get; set; } 
+    public int? FitnessId { get; set; } 
 }
 
