@@ -12,19 +12,18 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using StrongTogether.Areas.Identity.Data;
 
 namespace StrongTogether.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {
-        private readonly UserManager<StrongTogetherUser> _userManager;
-        private readonly SignInManager<StrongTogetherUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<StrongTogetherUser> userManager,
-            SignInManager<StrongTogetherUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -74,7 +73,7 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(StrongTogetherUser user)
+        private async Task LoadAsync(IdentityUser user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;
