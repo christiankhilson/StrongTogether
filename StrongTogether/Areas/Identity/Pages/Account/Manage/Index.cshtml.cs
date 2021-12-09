@@ -14,12 +14,12 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<Data.StrongTogetherUser> _userManager;
-        private readonly SignInManager<Data.StrongTogetherUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
         public IndexModel(
-            UserManager<Data.StrongTogetherUser> userManager,
-            SignInManager<Data.StrongTogetherUser> signInManager)
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -58,49 +58,9 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "User Id")]
-            public int StrongTogetherUserId { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "First name")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Last name")]
-            public string LastName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Gender")]
-            public int Gender { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Height in feet")]
-            public int FootHeight { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Height in inches")]
-            public int InchHeight { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Weight")]
-            public int Weight { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Fitness Id")]
-            public int? FitnessId { get; set; }
         }
 
-        private async Task LoadAsync(Data.StrongTogetherUser user)
+        private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -109,12 +69,6 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Gender = user.Gender,
-                FootHeight = user.FootHeight,
-                InchHeight = user.InchHeight,
-                FitnessId = user.FitnessId,
                 PhoneNumber = phoneNumber
             };
         }
@@ -155,38 +109,6 @@ namespace StrongTogether.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
-            if (Input.FirstName != user.FirstName)
-            {
-                user.FirstName = Input.FirstName;
-            }
-
-            if (Input.LastName != user.LastName)
-            {
-                user.LastName = Input.LastName;
-            }
-
-            if (Input.Gender != user.Gender)
-            {
-                user.Gender = Input.Gender;
-            }
-
-            if (Input.FootHeight != user.FootHeight)
-            {
-                user.FootHeight = Input.FootHeight;
-            }
-
-            if (Input.InchHeight != user.InchHeight)
-            {
-                user.InchHeight = Input.InchHeight;
-            }
-
-            if (Input.FitnessId != user.FitnessId)
-            {
-                user.FitnessId = Input.FitnessId;
-            }
-
-            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

@@ -18,7 +18,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using StrongTogether.Areas.Identity.Data;
 
 namespace StrongTogether.Areas.Identity.Pages.Account
 {
@@ -71,45 +70,6 @@ namespace StrongTogether.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "User Id")]
-            public int StrongTogetherUserId { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "First name")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Last name")]
-            public string LastName { get; set; }
-
-            
-            [DataType(DataType.Text)]
-            [Display(Name = "Gender")]
-            public int Gender { get; set; }
-
-            
-            [DataType(DataType.Text)]
-            [Display(Name = "Height in feet")]
-            public int FootHeight { get; set; }
-
-            
-            [DataType(DataType.Text)]
-            [Display(Name = "Height in inches")]
-            public int InchHeight { get; set; }
-
-            
-            [DataType(DataType.Text)]
-            [Display(Name = "Weight")]
-            public int Weight { get; set; }
-
-            
-            [DataType(DataType.Text)]
-            [Display(Name = "Fitness Id")]
-            public int? FitnessId { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -152,21 +112,10 @@ namespace StrongTogether.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new StrongTogetherUser
-                {
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName,
-                    Gender = Input.Gender,
-                    FootHeight = Input.FootHeight,
-                    InchHeight = Input.InchHeight,
-                    FitnessId = Input.FitnessId,
-                    UserName = Input.Email,
-                    Email = Input.Email
+                var user = CreateUser();
 
-                };
-
-                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
